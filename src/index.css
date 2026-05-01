@@ -1,0 +1,41 @@
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+  :root {
+    --accent: 124 58 237; /* #7c3aed */
+    --accent-light: 168 85 247; /* #a855f7 */
+  }
+  .theme-matrix {
+    --accent: 22 163 74; /* #16a34a green-600 */
+    --accent-light: 34 197 94; /* #22c55e green-500 */
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: #0a0a0f;
+    color: #f8fafc;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7c3aed;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a855f7;
+}
