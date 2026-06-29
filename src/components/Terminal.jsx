@@ -1,14 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useStore } from '../core/store/useStore';
 import { usePerformance } from '../core/store/PerformanceContext';
 import { Terminal as TermIcon, Minimize2, Maximize2, X } from 'lucide-react';
 import { analytics } from '../core/utils/analytics';
+import { projects } from '../data/projects';
 
 const COMMANDS = [
   'help', 'whoami', 'skills', 'projects', 'view', 'theme', 'email', 'social', 'download', 'stats', 'clear', 'matrix', 'close', 'weather', 'time', 'minimize'
 ];
 
 export default function Terminal() {
+  const navigate = useNavigate();
   const { 
     isTerminalOpen, 
     toggleTerminal, 
@@ -194,26 +197,20 @@ export default function Terminal() {
       case 'projects':
         addTerminalBuffer([
           'Selected Portfolio Projects:',
-          '  [1] 3D E-Commerce Configurator (React, Three.js, Node.js)',
-          '  [2] AI Dashboard Visualizer (React, Tailwind, Chart.js)',
-          '  [3] Globe visualizer (Three.js, GLSL, Vite)',
-          '  [4] Mobile Finance App (React Native, Reanimated)',
-          '  [5] Portfolio builder SaaS (React, Next.js, Prisma)',
-          '  [6] Particle Universe Math Art (WebGL, JavaScript)',
+          ...projects.map(p => `  [${p.id}] ${p.title} (${p.tags.join(', ')})`),
           ' ',
-          'Type "view [1-6]" to open details page.'
+          `Type "view [1-${projects.length}]" to open details page.`
         ]);
         break;
 
       case 'view':
         const index = parseInt(arg);
-        if (index >= 1 && index <= 6) {
+        if (index >= 1 && index <= projects.length) {
           addTerminalBuffer([`Navigating to Project ${index} Case Study...`]);
-          // Direct navigate via router
-          window.location.hash = `/project/${index}`;
+          navigate(`/project/${index}`);
           toggleTerminal();
         } else {
-          addTerminalBuffer(['Error: Project index must be between 1 and 6. E.g. "view 2"']);
+          addTerminalBuffer([`Error: Project index must be between 1 and ${projects.length}. E.g. "view 2"`]);
         }
         break;
 
