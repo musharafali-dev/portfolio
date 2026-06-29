@@ -66,7 +66,7 @@ export default function Projects() {
                 
                 {/* Front Face */}
                 <div 
-                  className="absolute inset-0 flex flex-col justify-end rounded-2xl p-6 [backface-visibility:hidden] overflow-hidden"
+                  className="absolute inset-0 flex flex-col justify-end rounded-2xl p-6 [backface-visibility:hidden] overflow-hidden transition-all duration-500 group-hover:opacity-0 group-hover:pointer-events-none"
                 >
                   {/* Real Project Image Background */}
                   {project.image && (
@@ -96,7 +96,9 @@ export default function Projects() {
                 </div>
 
                 {/* Back Face */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 rounded-2xl border border-white/10 bg-surface p-8 text-center backdrop-blur-xl [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                <div 
+                  className="absolute inset-0 flex flex-col items-center justify-center gap-6 rounded-2xl border border-white/10 bg-surface p-8 text-center backdrop-blur-xl [backface-visibility:hidden] [transform:rotateY(180deg)] pointer-events-none group-hover:pointer-events-auto transition-all duration-500"
+                >
                   <h3 className="text-xl font-bold text-white">{project.title}</h3>
                   <p className="text-sm text-muted leading-relaxed">{project.description}</p>
                   
