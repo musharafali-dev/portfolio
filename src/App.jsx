@@ -25,6 +25,7 @@ import Terminal from './components/Terminal';
 import PortfolioDevTools from './components/devtools/PortfolioDevTools';
 import AccessibilityManager from './components/AccessibilityManager';
 import { useScrollAnimation } from './core/hooks/useScrollAnimation';
+import Services from './components/Services';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,6 +37,7 @@ function Home() {
         <Hero />
         <About />
         <Projects />
+        <Services />
         <Contact />
       </main>
       <div className="relative z-10 bg-transparent">

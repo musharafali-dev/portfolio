@@ -90,7 +90,7 @@ export default function Contact() {
              <div className="absolute inset-0 -z-10 h-[400px] w-[400px] -translate-x-1/4 -translate-y-1/4 opacity-30 blur-[100px] rounded-full bg-accent"></div>
              
              <div className="mb-12">
-               <span className="text-sm font-mono uppercase tracking-widest text-accent-light">Section 03</span>
+               <span className="text-sm font-mono uppercase tracking-widest text-accent-light">Section 04</span>
                <h2 className="mt-2 text-4xl font-heading font-bold text-white md:text-5xl lg:text-6xl">
                  Let's Build<br/>Together
                </h2>
