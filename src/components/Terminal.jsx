@@ -229,7 +229,7 @@ export default function Terminal() {
 
       case 'email':
         addTerminalBuffer(['Opening default email client...']);
-        window.open('mailto:musharafali.dev@gmail.com?subject=Portfolio%20Inquiry');
+        window.open('mailto:itsmalipk@gmail.com?subject=Portfolio%20Inquiry');
         break;
 
       case 'social':
@@ -237,7 +237,7 @@ export default function Terminal() {
           'Social channels:',
           '  GitHub:   github.com/musharafali-dev',
           '  LinkedIn: linkedin.com/in/musharafali',
-          '  Email:    musharafali.dev@gmail.com'
+          '  Email:    itsmalipk@gmail.com'
         ]);
         break;
 

@@ -89,7 +89,7 @@ export default function Contact() {
                {[
                  { icon: <Github size={20} />, href: 'https://github.com/musharafali-dev' },
                  { icon: <Linkedin size={20} />, href: 'https://linkedin.com/in/musharafali' },
-                 { icon: <Mail size={20} />, href: 'mailto:musharafalioffical@gmail.com' }
+                 { icon: <Mail size={20} />, href: 'mailto:itsmalipk@gmail.com' }
                ].map((social, idx) => (
                  <a 
                    key={idx} 

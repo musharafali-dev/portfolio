@@ -21,7 +21,7 @@ export default function ResumeViewer() {
           <div className="flex flex-col items-start md:items-end gap-2 text-sm text-gray-600">
             <span className="flex items-center gap-1.5"><MapPin size={14} /> Gilgit-Baltistan, Pakistan</span>
             <a href="tel:+923418848066" className="flex items-center gap-1.5 hover:text-blue-600"><Phone size={14} /> +92 341 8848066</a>
-            <a href="mailto:musharafalioffical@gmail.com" className="flex items-center gap-1.5 hover:text-blue-600"><Mail size={14} /> musharafalioffical@gmail.com</a>
+            <a href="mailto:itsmalipk@gmail.com" className="flex items-center gap-1.5 hover:text-blue-600"><Mail size={14} /> itsmalipk@gmail.com</a>
             <a href="https://github.com/musharafali-dev" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-blue-600"><Globe size={14} /> github.com/musharafali-dev</a>
           </div>
         </div>
