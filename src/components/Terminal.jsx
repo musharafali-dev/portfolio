@@ -218,7 +218,7 @@ export default function Terminal() {
         break;
 
       case 'theme':
-        const validThemes = ['dark', 'light', 'matrix', 'cyberpunk'];
+        const validThemes = ['dark', 'matrix', 'cyberpunk'];
         if (validThemes.includes(arg)) {
           setTheme(arg);
           addTerminalBuffer([`Theme set to: ${arg.toUpperCase()}`]);

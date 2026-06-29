@@ -10,7 +10,7 @@ const links = [
   { name: 'Contact', href: '#contact' },
 ];
 
-const THEMES = ['dark', 'light', 'matrix', 'cyberpunk'];
+const THEMES = ['dark', 'matrix', 'cyberpunk'];
 
 export default function Navbar() {
   const { theme, setTheme, isResumeMode, toggleResumeMode, toggleTerminal } = useStore();
