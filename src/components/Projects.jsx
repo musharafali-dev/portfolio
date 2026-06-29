@@ -47,7 +47,7 @@ export default function Projects() {
                 onClick={() => setFilter(f)}
                 className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
                   filter === f 
-                    ? 'bg-gradient-to-r from-[rgb(var(--accent))] to-[rgb(var(--accent-light))] text-white shadow-lg shadow-[0_4px_12px_rgba(var(--accent),0.25)]' 
+                    ? 'bg-gradient-to-r from-[rgb(var(--accent))] to-[rgb(var(--accent-light))] text-white shadow-[0_4px_12px_rgba(var(--accent),0.25)]' 
                     : 'text-muted hover:text-white hover:bg-white/5'
                 }`}
               >
