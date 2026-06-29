@@ -19,15 +19,29 @@ export default function Contact() {
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm();
 
   const onSubmit = async (data) => {
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    // Detect if keys are default template placeholders
+    const isMockMode = !serviceId || serviceId === 'YOUR_SERVICE_ID' || serviceId.startsWith('YOUR_');
+
     try {
-      await emailjs.sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID',
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID',
-        formRef.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY'
-      );
-      setToast({ show: true, message: 'Message sent! 🎉', type: 'success' });
-      reset();
+      if (isMockMode) {
+        // Local simulation delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setToast({ show: true, message: 'Message sent! 🎉 (Local Mock Mode)', type: 'success' });
+        reset();
+      } else {
+        await emailjs.sendForm(
+          serviceId,
+          templateId,
+          formRef.current,
+          publicKey
+        );
+        setToast({ show: true, message: 'Message sent! 🎉', type: 'success' });
+        reset();
+      }
     } catch (error) {
       setToast({ show: true, message: 'Something went wrong. Try again.', type: 'error' });
     }
