@@ -4,31 +4,61 @@ import { useStore } from '../core/store/useStore';
 import gsap from 'gsap';
 
 export default function CameraRig() {
-  const { scrollProgress, activeSection } = useStore();
+  const { scrollProgress } = useStore();
   const groupRef = useRef();
 
-  useFrame((state, delta) => {
-    // 1. Base Camera Z-Depth Movement based on Scroll (Cinematic Drive)
-    // As we scroll from 0 to 1, we move the camera deeper into the scene
-    const targetZ = gsap.utils.interpolate(10, -50, scrollProgress);
+  useFrame((state) => {
+    // Coordinate path for camera movement on scroll
+    // scrollProgress goes from 0.0 (top) to 1.0 (bottom)
     
-    // Smoothly interpolate Z
-    state.camera.position.z += (targetZ - state.camera.position.z) * 0.05;
+    // Z positions for key frames:
+    // 0%   (Home)    -> Z = 6
+    // 33%  (About)   -> Z = -6
+    // 66%  (Projects)-> Z = -21
+    // 100% (Contact) -> Z = -32.5
+    
+    let targetZ = 6;
+    let targetX = 0;
+    let targetY = 0;
+    let targetRotX = 0;
+    let targetRotY = 0;
 
-    // 2. Subtle Mouse Sway (Parallax)
-    const targetX = state.pointer.x * 2;
-    const targetY = state.pointer.y * 1.5;
+    if (scrollProgress <= 0.33) {
+      // Home to About transition
+      const t = scrollProgress / 0.33;
+      targetZ = gsap.utils.interpolate(6, -6, t);
+      targetX = gsap.utils.interpolate(0, -0.6, t); // Look slightly right by offsetting camera to the left
+      targetY = gsap.utils.interpolate(0, 0, t);
+    } else if (scrollProgress <= 0.66) {
+      // About to Projects transition
+      const t = (scrollProgress - 0.33) / 0.33;
+      targetZ = gsap.utils.interpolate(-6, -21, t);
+      targetX = gsap.utils.interpolate(-0.6, 0, t); // Center camera back for project panels
+      targetY = gsap.utils.interpolate(0, 0, t);
+    } else {
+      // Projects to Contact transition
+      const t = (scrollProgress - 0.66) / 0.34;
+      targetZ = gsap.utils.interpolate(-21, -32.5, t);
+      targetX = gsap.utils.interpolate(0, 0, t);
+      targetY = gsap.utils.interpolate(0, -0.4, t); // Focus lower on the globe
+      targetRotX = gsap.utils.interpolate(0, 0.1, t); // Look slightly down
+    }
 
-    state.camera.position.x += (targetX - state.camera.position.x) * 0.02;
-    state.camera.position.y += (targetY - state.camera.position.y) * 0.02;
+    // Smooth camera movements with linear interpolation
+    state.camera.position.z += (targetZ - state.camera.position.z) * 0.08;
+    state.camera.position.x += (targetX - state.camera.position.x) * 0.08;
+    state.camera.position.y += (targetY - state.camera.position.y) * 0.08;
 
-    // 3. Optional: Dynamic Rotation based on active section
-    // E.g., if we are in 'projects', maybe we look slightly down
-    let rotX = 0;
-    if (activeSection === 'projects') rotX = -0.1;
-    if (activeSection === 'contact') rotX = 0.1;
+    // Mouse parallax offset (based on active viewport mouse pointer position)
+    const mouseParallaxX = state.pointer.x * 0.8;
+    const mouseParallaxY = state.pointer.y * 0.6;
 
-    state.camera.rotation.x += (rotX - state.camera.rotation.x) * 0.05;
+    state.camera.position.x += (mouseParallaxX - state.camera.position.x) * 0.03;
+    state.camera.position.y += (mouseParallaxY - state.camera.position.y) * 0.03;
+
+    // Subtle pitch/yaw rotation updates
+    state.camera.rotation.x += (targetRotX - state.camera.rotation.x) * 0.05;
+    state.camera.rotation.y += (targetRotY - state.camera.rotation.y) * 0.05;
   });
 
   return <group ref={groupRef} />;

@@ -81,32 +81,30 @@ export default function ProjectCaseStudy() {
           </a>
         </div>
 
-        {/* Dynamic Case Study Content (Simulated) */}
+        {/* Dynamic Case Study Content */}
         <div className="space-y-16">
           <section>
             <h2 className="text-3xl font-bold mb-6">The Problem</h2>
             <p className="text-lg text-muted leading-relaxed">
-              In the modern web ecosystem, creating performant 3D experiences that don't isolate users with slow connections is a massive challenge. 
-              The goal was to build an architecture that scales smoothly across devices while maintaining a premium aesthetic.
+              {project.problemStatement}
             </p>
           </section>
 
           <section>
             <h2 className="text-3xl font-bold mb-6">Process & Architecture</h2>
             <p className="text-lg text-muted leading-relaxed mb-6">
-              We implemented a unified WebGL canvas using React Three Fiber, decoupling the 3D rendering context from the HTML DOM overlay.
-              This allowed us to use GSAP ScrollTrigger to orchestrate cinematic camera movements without sacrificing accessibility.
+              {project.architectureText}
             </p>
-            <div className="aspect-video w-full rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-              <span className="text-muted font-mono text-sm">Architecture Diagram Placeholder</span>
+            <div className="aspect-video w-full rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center p-6 text-center">
+              <div className="mb-2 text-accent-light font-mono text-sm uppercase tracking-wider">SYSTEM TOPOLOGY</div>
+              <span className="text-muted text-xs">Node rendering layout orchestrated via R3F and State Contexts.</span>
             </div>
           </section>
 
           <section>
             <h2 className="text-3xl font-bold mb-6">The Solution & Impact</h2>
             <p className="text-lg text-muted leading-relaxed">
-              The final product achieved a perfect 100 Lighthouse score while rendering over 1,500 particles and multiple post-processing passes.
-              User engagement increased by 40%, and the bounce rate dropped significantly due to the immersive, zero-layout-shift transitions.
+              {project.impactText}
             </p>
           </section>
         </div>

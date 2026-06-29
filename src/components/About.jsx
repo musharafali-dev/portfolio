@@ -1,11 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { Canvas } from '@react-three/fiber';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { experience } from '../data/experience';
 import { skills } from '../data/skills';
-import AvatarCard from '../three/AvatarCard';
 import GitHubStats from '../features/github/GitHubStats';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -61,7 +59,7 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-24 px-6">
+    <section id="about" ref={sectionRef} className="py-24 px-6 bg-transparent">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-8">
 
@@ -71,7 +69,7 @@ export default function About() {
               <span className="text-sm font-mono uppercase tracking-widest text-accent-light">Section 01</span>
               <h2 className="mt-2 mb-6 font-heading text-4xl font-bold text-white md:text-5xl">About Me</h2>
               <p className="mb-12 text-lg text-muted">
-                Brutally efficient Software Engineering student and Full-Stack Developer with a specialized focus on Blockchain (Solidity) and high-performance web applications. Proven track record in architecting NFT marketplaces and managing end-to-end video production for documentary-style content. I don't just write code; I build scalable systems.
+                Software Engineering student and Full-Stack Developer with a specialized focus on Blockchain (Solidity) and high-performance web applications. Proven track record in architecting NFT marketplaces and managing end-to-end video production for documentary-style content. I don't just write code; I build scalable systems.
               </p>
             </div>
 
@@ -87,18 +85,13 @@ export default function About() {
             </div>
           </div>
 
-          {/* Right Column: Avatar & Skills */}
+          {/* Right Column: Avatar Framing & Skills */}
           <div className="flex flex-col gap-12">
 
-            {/* 3D Profile Picture */}
-            <div className="mx-auto w-full max-w-sm aspect-[3/4] rounded-2xl border border-white/10 bg-surface backdrop-blur-sm overflow-hidden relative">
-               <Canvas camera={{ position: [0, 0, 5], fov: 50 }} style={{ width: '100%', height: '100%' }}>
-                  <React.Suspense fallback={null}>
-                    <AvatarCard />
-                  </React.Suspense>
-               </Canvas>
+            {/* Transparent Framing Slot for global 3D Avatar Card */}
+            <div className="mx-auto w-full max-w-sm aspect-[3/4] rounded-2xl border border-white/10 bg-transparent overflow-hidden relative pointer-events-none">
+               {/* 3D Avatar renders in background and aligns with this space */}
             </div>
-
 
             {/* Skills */}
             <div ref={skillsRef} className="space-y-6">
@@ -132,7 +125,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* Phase 4: GitHub Integration */}
+        {/* Live GitHub activity */}
         <GitHubStats username="musharafali-dev" />
 
       </div>

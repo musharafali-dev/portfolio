@@ -20,7 +20,7 @@ export default function ResumeViewer() {
             <p className="text-xl text-gray-600">Full-Stack Developer | Blockchain Engineer | UI/UX Designer</p>
           </div>
           <div className="flex flex-col items-end gap-2 text-sm text-gray-600">
-            <a href="mailto:your_email@example.com" className="hover:text-blue-600">[Your Email]</a>
+            <a href="mailto:musharafali.dev@gmail.com" className="hover:text-blue-600">musharafali.dev@gmail.com</a>
             <a href="https://github.com/musharafali-dev" className="hover:text-blue-600">github.com/musharafali-dev</a>
             <span className="text-gray-600">Gilgit, Pakistan</span>
           </div>

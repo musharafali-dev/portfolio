@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
 import gsap from 'gsap';
@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { useStore } from './core/store/useStore';
 import { usePerformanceMonitor } from './core/hooks/usePerformanceMonitor';
+import ErrorBoundary from './core/utils/ErrorBoundary';
 
 import Preloader from './components/Preloader';
 import CustomCursor from './components/CustomCursor';
@@ -19,20 +20,25 @@ import Footer from './components/Footer';
 
 import ResumeViewer from './features/resume/ResumeViewer';
 import ProjectCaseStudy from './features/projects/ProjectCaseStudy';
+import SceneManager from './three/SceneManager';
+import Terminal from './components/Terminal';
+import PortfolioDevTools from './components/devtools/PortfolioDevTools';
+import AccessibilityManager from './components/AccessibilityManager';
+import { useScrollAnimation } from './core/hooks/useScrollAnimation';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Home page layout combining all sections
+// Home page layout combining all sections (now overlaying transparently on background canvas)
 function Home() {
   return (
     <>
-      <main className="relative z-10">
+      <main className="relative z-10 bg-transparent">
         <Hero />
         <About />
         <Projects />
         <Contact />
       </main>
-      <div className="relative z-10">
+      <div className="relative z-10 bg-transparent">
         <Footer />
       </div>
     </>
@@ -42,11 +48,14 @@ function Home() {
 function App() {
   const { isLoaded, setIsLoaded, setScrollProgress, isResumeMode, theme } = useStore();
   
+  // Initialize scroll tracking section triggers
+  useScrollAnimation();
+
   useEffect(() => {
-    if (theme === 'matrix') {
-      document.body.classList.add('theme-matrix');
-    } else {
-      document.body.classList.remove('theme-matrix');
+    // Dynamic body classes based on theme selection
+    document.body.classList.remove('theme-matrix', 'theme-cyberpunk', 'theme-light');
+    if (theme !== 'dark') {
+      document.body.classList.add(`theme-${theme}`);
     }
   }, [theme]);
   
@@ -79,10 +88,14 @@ function App() {
   }, [setIsLoaded, setScrollProgress]);
 
   return (
-    <>
+    <ErrorBoundary>
       {!isLoaded && <Preloader onComplete={() => setIsLoaded(true)} />}
       
+      {/* 3D Global viewport manager */}
+      {!isResumeMode && <SceneManager />}
+
       <CustomCursor />
+      <AccessibilityManager />
       <ScrollProgressBar />
       <Navbar />
       
@@ -95,7 +108,13 @@ function App() {
           <Route path="/project/:id" element={<ProjectCaseStudy />} />
         </Routes>
       )}
-    </>
+
+      {/* Retro CLI modal console */}
+      <Terminal />
+
+      {/* Dev profiling visualizer (loaded only in dev environments) */}
+      {import.meta.env.DEV && <PortfolioDevTools />}
+    </ErrorBoundary>
   );
 }
 

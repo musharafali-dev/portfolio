@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { Menu, X, FileText, Binary } from 'lucide-react';
+import { Menu, X, FileText, Binary, Terminal, Sun, Moon, Palette } from 'lucide-react';
 import { useStore } from '../core/store/useStore';
 
 const links = [
@@ -10,8 +10,10 @@ const links = [
   { name: 'Contact', href: '#contact' },
 ];
 
+const THEMES = ['dark', 'light', 'matrix', 'cyberpunk'];
+
 export default function Navbar() {
-  const { theme, setTheme, isResumeMode, toggleResumeMode } = useStore();
+  const { theme, setTheme, isResumeMode, toggleResumeMode, toggleTerminal } = useStore();
   const [active, setActive] = useState('Home');
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef(null);
@@ -51,6 +53,25 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  // Theme Cycler
+  const cycleTheme = () => {
+    const nextIdx = (THEMES.indexOf(theme) + 1) % THEMES.length;
+    setTheme(THEMES[nextIdx]);
+  };
+
+  const getThemeIcon = () => {
+    switch (theme) {
+      case 'light':
+        return <Sun size={18} />;
+      case 'matrix':
+        return <Binary size={18} className="text-green-500" />;
+      case 'cyberpunk':
+        return <Palette size={18} className="text-rose-500" />;
+      default:
+        return <Moon size={18} />;
+    }
+  };
+
   return (
     <>
       <nav
@@ -63,7 +84,7 @@ export default function Navbar() {
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <button 
             onClick={() => {
-              if (isResumeMode && toggleResumeMode) toggleResumeMode();
+              if (isResumeMode) toggleResumeMode();
               document.querySelector('#home')?.scrollIntoView({ behavior: 'smooth' });
             }}
             className={`font-heading text-2xl font-bold tracking-tighter ${isResumeMode ? 'text-slate-900' : 'text-white'}`}
@@ -72,7 +93,7 @@ export default function Navbar() {
           </button>
 
           {/* Desktop Links */}
-          <div className="hidden space-x-8 md:flex items-center">
+          <div className="hidden space-x-6 md:flex items-center">
             {links.map((link) => (
               <a
                 key={link.name}
@@ -84,7 +105,7 @@ export default function Navbar() {
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
-                  if (isResumeMode && toggleResumeMode) toggleResumeMode();
+                  if (isResumeMode) toggleResumeMode();
                   document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
@@ -97,12 +118,22 @@ export default function Navbar() {
             
             <div className="w-[1px] h-4 bg-white/20 mx-2"></div>
             
+            {/* Terminal console toggle button */}
             <button 
-              onClick={() => setTheme(theme === 'matrix' ? 'dark' : 'matrix')}
-              className={`p-2 rounded-full transition-colors ${theme === 'matrix' ? 'bg-green-500/20 text-green-400' : (isResumeMode ? 'text-slate-500 hover:text-slate-900' : 'text-muted hover:text-white')}`}
-              title="Toggle Matrix Mode"
+              onClick={toggleTerminal}
+              className={`p-2 rounded-full transition-colors ${isResumeMode ? 'text-slate-500 hover:text-slate-900' : 'text-muted hover:text-white'}`}
+              title="Open Terminal Console [ ` ]"
             >
-              <Binary size={18} />
+              <Terminal size={18} />
+            </button>
+
+            {/* Cycle Themes */}
+            <button 
+              onClick={cycleTheme}
+              className={`p-2 rounded-full transition-colors ${isResumeMode ? 'text-slate-500 hover:text-slate-900' : 'text-muted hover:text-white'}`}
+              title={`Cycle Theme (Current: ${theme})`}
+            >
+              {getThemeIcon()}
             </button>
             
             <button 
@@ -152,6 +183,37 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
+            
+            <div className="w-full h-[1px] bg-white/10 my-4" />
+
+            <button 
+              onClick={() => {
+                setIsOpen(false);
+                toggleTerminal();
+              }}
+              className="flex items-center gap-3 text-lg font-medium text-muted hover:text-white"
+            >
+              <Terminal size={20} /> Terminal Console
+            </button>
+
+            <button 
+              onClick={() => {
+                cycleTheme();
+              }}
+              className="flex items-center gap-3 text-lg font-medium text-muted hover:text-white"
+            >
+              {getThemeIcon()} Theme: {theme.toUpperCase()}
+            </button>
+
+            <button 
+              onClick={() => {
+                setIsOpen(false);
+                toggleResumeMode();
+              }}
+              className="flex items-center gap-3 text-lg font-medium text-muted hover:text-white"
+            >
+              <FileText size={20} /> {isResumeMode ? 'Exit Resume' : 'Resume Mode'}
+            </button>
           </div>
         </div>
       </div>

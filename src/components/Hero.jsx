@@ -1,15 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import { Canvas } from '@react-three/fiber';
 import gsap from 'gsap';
-
-import ParticleField from '../three/ParticleField';
-import FloatingGeometry from '../three/FloatingGeometry';
 import { useStore } from '../core/store/useStore';
 
 export default function Hero() {
   const nameRef = useRef(null);
   const { theme } = useStore();
-  const accentLight = theme === 'matrix' ? '#22c55e' : '#a855f7';
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -39,23 +34,13 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative flex min-h-screen items-center px-6 pt-20">
-      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden="true" tabIndex={-1}>
-        <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} color={accentLight} intensity={2} />
-          <ParticleField />
-          <group position={[3, 0, -2]}>
-            <FloatingGeometry />
-          </group>
-        </Canvas>
-      </div>
-
+    <section id="home" className="relative flex min-h-screen items-center px-6 pt-20 bg-transparent">
+      {/* Background is now rendered globally by SceneManager.jsx */}
 
       <div className="relative z-10 mx-auto w-full max-w-7xl">
         <div className="max-w-3xl">
           <p className="mb-6 font-mono text-sm uppercase tracking-[0.2em] text-accent-light">
-            PORTFOLIO &middot; 2025
+            PORTFOLIO &middot; 2026
           </p>
           <h1
             ref={nameRef}
