@@ -72,15 +72,15 @@ export default function Hero() {
 
           <div className="flex flex-wrap gap-8 font-mono text-sm text-muted">
             <div className="flex flex-col">
-              <span className="text-2xl font-bold text-white">50+</span>
+              <span className="text-2xl font-bold text-white">20+</span>
               <span>Projects</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl font-bold text-white">5yr</span>
+              <span className="text-2xl font-bold text-white">2+ yr</span>
               <span>Experience</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl font-bold text-white">30+</span>
+              <span className="text-2xl font-bold text-white">10+</span>
               <span>Clients</span>
             </div>
           </div>
