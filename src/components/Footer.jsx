@@ -21,7 +21,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-white/[0.06] bg-[#0a0a0f] py-8 text-center text-muted">
       <div className="mx-auto max-w-7xl px-6 relative">
-        <p className="mb-2 font-heading font-medium text-white">Musharraf Ali &middot; 2025</p>
+        <p className="mb-2 font-heading font-medium text-white">Musharraf Ali &middot; 2026</p>
         <p className="text-sm">Built with React &amp; Three.js</p>
 
         {showScrollTop && (

@@ -55,7 +55,7 @@ export default function Hero() {
           <div className="mb-16 flex flex-wrap gap-4">
             <a
               href="#projects"
-              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-accent to-accent-light px-8 py-4 font-medium text-white transition-transform hover:scale-105"
+              className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[rgb(var(--accent))] to-[rgb(var(--accent-light))] px-8 py-4 font-medium text-white transition-transform hover:scale-105 shadow-[0_4px_20px_rgba(var(--accent),0.25)] hover:shadow-[0_4px_25px_rgba(var(--accent-light),0.4)]"
               aria-label="View Work"
             >
               View Work &rarr;

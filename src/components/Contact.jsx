@@ -12,10 +12,6 @@ const Linkedin = ({size=20}) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
 );
 
-const Twitter = ({size=20}) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
-);
-
 export default function Contact() {
   const formRef = useRef(null);
   const [toast, setToast] = useState({ show: false, message: '', type: '' });
@@ -73,7 +69,7 @@ export default function Contact() {
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-8 items-center">
           
-          {/* Left Column: Transparent Framing Slot for Global Globe */}
+          {/* Left Column: Info & Globe */}
           <div className="relative">
              <div className="absolute inset-0 -z-10 h-[400px] w-[400px] -translate-x-1/4 -translate-y-1/4 opacity-30 blur-[100px] rounded-full bg-accent"></div>
              
@@ -92,16 +88,15 @@ export default function Contact() {
              <div className="mt-12 flex gap-4">
                {[
                  { icon: <Github size={20} />, href: 'https://github.com/musharafali-dev' },
-                 { icon: <Linkedin size={20} />, href: '#' },
-                 { icon: <Twitter size={20} />, href: '#' },
-                 { icon: <Mail size={20} />, href: 'mailto:musharafali.dev@gmail.com' }
+                 { icon: <Linkedin size={20} />, href: 'https://linkedin.com/in/musharafali' },
+                 { icon: <Mail size={20} />, href: 'mailto:musharafalioffical@gmail.com' }
                ].map((social, idx) => (
                  <a 
                    key={idx} 
                    href={social.href}
                    target="_blank"
                    rel="noreferrer"
-                   className="magnetic-social flex h-[36px] w-[36px] items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:bg-white/10 hover:text-accent-light"
+                   className="magnetic-social flex h-[36px] w-[36px] items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:bg-white/10 hover:text-[rgb(var(--accent-light))]"
                    aria-label="Social link"
                  >
                    {social.icon}
@@ -120,7 +115,7 @@ export default function Contact() {
                     <input 
                       {...register("name", { required: true })}
                       name="name"
-                      className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-white transition-all focus:border-accent-light focus:bg-[#4c1d95]/20 focus:outline-none focus:shadow-[0_0_14px_rgba(168,85,247,0.2)]"
+                      className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-white transition-all focus:border-[rgb(var(--accent-light))] focus:bg-[rgba(var(--accent),0.1)] focus:outline-none focus:shadow-[0_0_14px_rgba(var(--accent-light),0.35)]"
                     />
                     {errors.name && <span className="text-xs text-red-500 mt-1">This field is required</span>}
                   </div>
@@ -130,7 +125,7 @@ export default function Contact() {
                     <input 
                       {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
                       name="email"
-                      className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-white transition-all focus:border-accent-light focus:bg-[#4c1d95]/20 focus:outline-none focus:shadow-[0_0_14px_rgba(168,85,247,0.2)]"
+                      className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-white transition-all focus:border-[rgb(var(--accent-light))] focus:bg-[rgba(var(--accent),0.1)] focus:outline-none focus:shadow-[0_0_14px_rgba(var(--accent-light),0.35)]"
                     />
                     {errors.email && <span className="text-xs text-red-500 mt-1">Valid email is required</span>}
                   </div>
@@ -140,7 +135,7 @@ export default function Contact() {
                     <input 
                       {...register("subject", { required: true })}
                       name="subject"
-                      className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-white transition-all focus:border-accent-light focus:bg-[#4c1d95]/20 focus:outline-none focus:shadow-[0_0_14px_rgba(168,85,247,0.2)]"
+                      className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-white transition-all focus:border-[rgb(var(--accent-light))] focus:bg-[rgba(var(--accent),0.1)] focus:outline-none focus:shadow-[0_0_14px_rgba(var(--accent-light),0.35)]"
                     />
                     {errors.subject && <span className="text-xs text-red-500 mt-1">This field is required</span>}
                   </div>
@@ -151,7 +146,7 @@ export default function Contact() {
                       {...register("message", { required: true })}
                       name="message"
                       rows="4"
-                      className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-white transition-all focus:border-accent-light focus:bg-[#4c1d95]/20 focus:outline-none focus:shadow-[0_0_14px_rgba(168,85,247,0.2)] resize-none"
+                      className="w-full rounded-lg border border-white/10 bg-white/[0.04] px-4 py-3 text-white transition-all focus:border-[rgb(var(--accent-light))] focus:bg-[rgba(var(--accent),0.1)] focus:outline-none focus:shadow-[0_0_14px_rgba(var(--accent-light),0.35)] resize-none"
                     ></textarea>
                     {errors.message && <span className="text-xs text-red-500 mt-1">This field is required</span>}
                   </div>
@@ -159,7 +154,7 @@ export default function Contact() {
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-accent to-accent-light py-4 font-medium text-white transition-transform hover:scale-[1.02] disabled:opacity-70 disabled:hover:scale-100"
+                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[rgb(var(--accent))] to-[rgb(var(--accent-light))] py-4 font-medium text-white transition-transform hover:scale-[1.02] disabled:opacity-70 disabled:hover:scale-100 shadow-[0_4px_20px_rgba(var(--accent),0.25)] hover:shadow-[0_4px_25px_rgba(var(--accent-light),0.4)]"
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                     {!isSubmitting && <Send size={18} />}
