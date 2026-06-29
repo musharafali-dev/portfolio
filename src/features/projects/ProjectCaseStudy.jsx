@@ -48,7 +48,7 @@ export default function ProjectCaseStudy() {
   if (!project) return <div className="pt-32 text-center text-white">Project not found.</div>;
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#0a0a0f] text-white pt-24 px-6 pb-24 absolute inset-0 z-50 overflow-y-auto">
+    <div ref={containerRef} className="min-h-screen bg-[#0a0a0f] text-white pt-24 px-6 pb-24 absolute inset-0 z-50 overflow-y-auto" data-lenis-prevent="true">
       <div className="max-w-4xl mx-auto">
         
         <button 
