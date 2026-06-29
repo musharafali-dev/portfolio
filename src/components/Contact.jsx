@@ -43,7 +43,9 @@ export default function Contact() {
         reset();
       }
     } catch (error) {
-      setToast({ show: true, message: 'Something went wrong. Try again.', type: 'error' });
+      console.error('[EmailJS Error]', error);
+      const errorMsg = error?.text || error?.message || 'Something went wrong. Try again.';
+      setToast({ show: true, message: `Error: ${errorMsg}`, type: 'error' });
     }
     
     setTimeout(() => setToast({ show: false, message: '', type: '' }), 5000);
