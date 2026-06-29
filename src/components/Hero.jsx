@@ -37,7 +37,7 @@ export default function Hero() {
     <section id="home" className="relative flex min-h-screen items-center px-6 pt-20 bg-transparent">
       {/* Background is now rendered globally by SceneManager.jsx */}
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl">
+      <div className="relative z-10 mx-auto w-full max-w-7xl -mt-16 md:-mt-24">
         <div className="max-w-3xl">
           <p className="mb-6 font-mono text-sm uppercase tracking-[0.2em] text-accent-light">
             PORTFOLIO &middot; 2026
