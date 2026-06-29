@@ -11,7 +11,7 @@ export default function Hero() {
     if (prefersReducedMotion) return;
 
     if (nameRef.current) {
-      const chars = nameRef.current.innerText.split('');
+      const chars = nameRef.current.innerText.trim().split('');
       nameRef.current.innerText = '';
       chars.forEach((char) => {
         const span = document.createElement('span');
