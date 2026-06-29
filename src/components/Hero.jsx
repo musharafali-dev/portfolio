@@ -76,7 +76,7 @@ export default function Hero() {
               <span>Projects</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-2xl font-bold text-white">2+ yr</span>
+              <span className="text-2xl font-bold text-white">5yr</span>
               <span>Experience</span>
             </div>
             <div className="flex flex-col">
