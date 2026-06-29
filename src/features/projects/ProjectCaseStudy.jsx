@@ -72,12 +72,24 @@ export default function ProjectCaseStudy() {
           </p>
         </div>
 
-        <div className="flex gap-4 mb-16 pb-16 border-b border-white/10">
-          <a href={project.liveUrl} className="flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-light px-6 py-3 font-medium text-white transition-transform hover:scale-105">
-            <ExternalLink size={18} /> View Live App
-          </a>
-          <a href={project.githubUrl} className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 font-medium text-white transition-colors hover:bg-white/10">
-             GitHub Repo
+        <div className="flex flex-wrap gap-4 mb-16 pb-16 border-b border-white/10">
+          {project.liveUrl !== project.githubUrl && (
+            <a 
+              href={project.liveUrl} 
+              target="_blank" 
+              rel="noreferrer" 
+              className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[rgb(var(--accent))] to-[rgb(var(--accent-light))] px-6 py-3 font-medium text-white transition-transform hover:scale-105 shadow-[0_4px_20px_rgba(var(--accent),0.25)] hover:shadow-[0_4px_25px_rgba(var(--accent-light),0.4)]"
+            >
+              <ExternalLink size={18} /> View Live App
+            </a>
+          )}
+          <a 
+            href={project.githubUrl} 
+            target="_blank" 
+            rel="noreferrer" 
+            className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 font-medium text-white transition-colors hover:bg-white/10"
+          >
+            <Github size={18} /> GitHub Repo
           </a>
         </div>
 

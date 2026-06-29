@@ -100,10 +100,21 @@ export default function Projects() {
                   <h3 className="text-xl font-bold text-white">{project.title}</h3>
                   <p className="text-sm text-muted leading-relaxed">{project.description}</p>
                   
-                  <div className="flex gap-4 mt-4">
-                    <Link to={`/project/${project.id}`} className="flex items-center justify-center gap-2 rounded-full bg-white text-black px-5 py-2.5 text-sm font-bold transition-transform hover:scale-105">
-                      <ExternalLink size={16} /> View Details
+                  <div className="flex flex-col sm:flex-row gap-3 mt-4 w-full justify-center px-4">
+                    <Link 
+                      to={`/project/${project.id}`} 
+                      className="flex items-center justify-center gap-1.5 rounded-full border border-white/20 bg-white/5 text-white px-4 py-2.5 text-xs font-bold transition-all hover:bg-white/10 hover:border-white/40 flex-1 text-center"
+                    >
+                      Case Study
                     </Link>
+                    <a 
+                      href={project.liveUrl || project.githubUrl} 
+                      target="_blank" 
+                      rel="noreferrer" 
+                      className="flex items-center justify-center gap-1.5 rounded-full bg-white text-black px-4 py-2.5 text-xs font-bold transition-transform hover:scale-105 flex-1 text-center"
+                    >
+                      <ExternalLink size={12} /> View Live
+                    </a>
                   </div>
                 </div>
 
