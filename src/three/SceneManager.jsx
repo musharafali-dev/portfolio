@@ -10,7 +10,6 @@ import CameraRig from './CameraRig';
 import ParticleField from './ParticleField';
 import FloatingGeometry from './FloatingGeometry';
 import Globe from './Globe';
-import AvatarCard from './AvatarCard';
 import SkillGalaxy from './SkillGalaxy';
 import ProjectOrbit from './ProjectOrbit';
 
@@ -92,10 +91,7 @@ export default function SceneManager() {
               </group>
             </group>
 
-            {/* Layout structures along the scroll Z-path */}
-            <group position={[-3, 0, -12]}>
-              <AvatarCard />
-            </group>
+
             
             <group position={[3.5, 0, -18]}>
               <SkillGalaxy />

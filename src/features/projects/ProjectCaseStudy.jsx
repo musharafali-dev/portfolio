@@ -95,10 +95,13 @@ export default function ProjectCaseStudy() {
             <p className="text-lg text-muted leading-relaxed mb-6">
               {project.architectureText}
             </p>
-            <div className="aspect-video w-full rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center p-6 text-center">
-              <div className="mb-2 text-accent-light font-mono text-sm uppercase tracking-wider">SYSTEM TOPOLOGY</div>
-              <span className="text-muted text-xs">Node rendering layout orchestrated via R3F and State Contexts.</span>
-            </div>
+            {project.image && (
+              <img 
+                src={project.image} 
+                alt={project.title} 
+                className="w-full aspect-video rounded-2xl object-cover border border-white/10 mb-6" 
+              />
+            )}
           </section>
 
           <section>

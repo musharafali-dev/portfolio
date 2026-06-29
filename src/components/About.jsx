@@ -69,7 +69,7 @@ export default function About() {
               <span className="text-sm font-mono uppercase tracking-widest text-accent-light">Section 01</span>
               <h2 className="mt-2 mb-6 font-heading text-4xl font-bold text-white md:text-5xl">About Me</h2>
               <p className="mb-12 text-lg text-muted">
-                Software Engineering student and Full-Stack Developer with a specialized focus on Blockchain (Solidity) and high-performance web applications. Proven track record in architecting NFT marketplaces and managing end-to-end video production for documentary-style content. I don't just write code; I build scalable systems.
+                Software Engineering student and Blockchain Developer with hands-on experience in Ethereum smart contract development, decentralized applications (DApps), full-stack web development, and database management. Skilled in Solidity, JavaScript, Python, C++, MongoDB, MySQL, and Web3 technologies. Experienced in building secure blockchain solutions, responsive web applications, and SEO-driven digital platforms.
               </p>
             </div>
 
@@ -85,12 +85,17 @@ export default function About() {
             </div>
           </div>
 
-          {/* Right Column: Avatar Framing & Skills */}
+          {/* Right Column: Premium Profile Picture Frame & Skills */}
           <div className="flex flex-col gap-12">
 
-            {/* Transparent Framing Slot for global 3D Avatar Card */}
-            <div className="mx-auto w-full max-w-sm aspect-[3/4] rounded-2xl border border-white/10 bg-transparent overflow-hidden relative pointer-events-none">
-               {/* 3D Avatar renders in background and aligns with this space */}
+            {/* Glassmorphic Profile Picture Frame */}
+            <div className="mx-auto w-full max-w-sm aspect-[3/4] rounded-2xl border border-white/15 bg-white/5 p-2.5 backdrop-blur-md shadow-2xl relative group overflow-hidden transition-all duration-500 hover:border-accent-light/40 hover:shadow-[0_0_30px_rgba(168,85,247,0.2)]">
+               <img 
+                 src="/profile.jpg" 
+                 alt="Musharraf Ali" 
+                 className="w-full h-full object-cover rounded-xl transition-transform duration-750 group-hover:scale-[1.04]" 
+               />
+               <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f]/80 via-transparent to-transparent opacity-60 pointer-events-none" />
             </div>
 
             {/* Skills */}

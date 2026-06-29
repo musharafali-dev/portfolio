@@ -8,10 +8,6 @@ import { projects } from '../data/projects';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Github = ({size=16}) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.03c3.15-.38 6.5-1.4 6.5-7.17a5.2 5.2 0 0 0-1.45-3.8 4.9 4.9 0 0 0-.16-3.7s-1.13-.36-3.68 1.36a12.5 12.5 0 0 0-6.6 0C6.13 2 5 2 5 2a4.9 4.9 0 0 0-.16 3.7A5.2 5.2 0 0 0 3.39 9.5c0 5.77 3.35 6.79 6.5 7.17A4.8 4.8 0 0 0 8.89 19.7v4.3"/><path d="M8 19c-3 1-4-1-5-1"/></svg>
-);
-
 export default function Projects() {
   const [filter, setFilter] = useState('All');
   const filters = ['All', 'Web', 'Mobile', '3D'];
@@ -66,22 +62,31 @@ export default function Projects() {
           {filteredProjects.map((project) => (
             <div key={project.id} className="group relative h-[400px] w-full [perspective:1000px]">
               
-              <div className="absolute inset-0 transition-transform duration-600 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+              <div className="absolute inset-0 transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 
                 {/* Front Face */}
                 <div 
                   className="absolute inset-0 flex flex-col justify-end rounded-2xl p-6 [backface-visibility:hidden] overflow-hidden"
-                  style={{ background: `linear-gradient(to bottom right, #0a0a0f, ${project.color}40)` }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-0"></div>
+                  {/* Real Project Image Background */}
+                  {project.image && (
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 z-0" 
+                    />
+                  )}
+                  
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-10" />
                   
                   {/* Subtle shine effect */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-300 pointer-events-none bg-gradient-to-tr from-white/0 via-white/50 to-white/0 z-10" />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity duration-300 pointer-events-none bg-gradient-to-tr from-white/0 via-white/50 to-white/0 z-20" />
 
-                  <div className="relative z-20">
+                  <div className="relative z-30">
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.tags.map(tag => (
-                         <span key={tag} className="px-2 py-1 text-[10px] font-mono uppercase rounded bg-white/10 text-white/80 border border-white/20">
+                         <span key={tag} className="px-2 py-1 text-[10px] font-mono uppercase rounded bg-white/20 text-white border border-white/10 backdrop-blur-md">
                            {tag}
                          </span>
                       ))}
@@ -93,10 +98,10 @@ export default function Projects() {
                 {/* Back Face */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 rounded-2xl border border-white/10 bg-surface p-8 text-center backdrop-blur-xl [backface-visibility:hidden] [transform:rotateY(180deg)]">
                   <h3 className="text-xl font-bold text-white">{project.title}</h3>
-                  <p className="text-sm text-muted">{project.description}</p>
+                  <p className="text-sm text-muted leading-relaxed">{project.description}</p>
                   
                   <div className="flex gap-4 mt-4">
-                    <Link to={`/project/${project.id}`} className="flex items-center justify-center gap-2 rounded-full bg-white text-black px-4 py-2 text-sm font-bold transition-transform hover:scale-105">
+                    <Link to={`/project/${project.id}`} className="flex items-center justify-center gap-2 rounded-full bg-white text-black px-5 py-2.5 text-sm font-bold transition-transform hover:scale-105">
                       <ExternalLink size={16} /> View Details
                     </Link>
                   </div>
